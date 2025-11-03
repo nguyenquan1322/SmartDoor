@@ -15,6 +15,8 @@
 
         <activity android:name=".RegisterActivity" />
 
+        <activity android:name=".SecuritySettingsActivity" />
+
         <!-- Màn hình khởi động (logo) -->
         <activity
             android:name=".SplashActivity"
