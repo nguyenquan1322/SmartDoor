@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smartdoor">
+
+    <application
+        android:allowBackup="true"
+        android:label="SmartDoor"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Màn hình chính -->
+        <activity android:name=".MainActivity" />
+
+        <!-- Màn hình đăng nhập -->
+        <activity android:name=".LoginActivity" />
+
+        <activity android:name=".RegisterActivity" />
+
+        <!-- Màn hình khởi động (logo) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

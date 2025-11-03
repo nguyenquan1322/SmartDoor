@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "454194139453",
+    "project_id": "smartdooriot-b970c",
+    "storage_bucket": "smartdooriot-b970c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454194139453:android:0217260852f3f618797554",
+        "android_client_info": {
+          "package_name": "com.example.smartdoor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABZ9O74F-lLYlAo2AkK6YbDy_it3MXL1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
