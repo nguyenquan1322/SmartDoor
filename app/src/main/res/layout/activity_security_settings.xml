@@ -48,7 +48,7 @@
 
         <Button
             android:id="@+id/btnFingerprint"
-            android:text="Cài đặt vân tay"
+            android:text="Quản lý vân tay"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
@@ -69,15 +69,5 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#34A853" />
     </LinearLayout>
-
-    <TextView
-        android:text="Phiên bản bảo mật SmartDoor v1.0"
-        android:textSize="12sp"
-        android:textColor="#808080"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

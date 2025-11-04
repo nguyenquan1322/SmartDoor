@@ -28,6 +28,18 @@
         android:textStyle="bold"
         android:layout_marginBottom="24dp" />
 
+    <TextView
+        android:id="@+id/tvDoorStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📡 Trạng thái: Đang khởi động..."
+        android:textColor="#2E7D32"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="8dp"/>
+
+
     <!-- Lưới các nút chức năng -->
     <GridLayout
         android:id="@+id/gridButtons"

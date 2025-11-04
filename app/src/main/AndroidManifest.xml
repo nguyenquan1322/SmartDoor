@@ -17,6 +17,10 @@
 
         <activity android:name=".SecuritySettingsActivity" />
 
+        <activity android:name=".FingerprintManagementActivity" />
+
+        <activity android:name=".HistoryActivity" />
+
         <!-- Màn hình khởi động (logo) -->
         <activity
             android:name=".SplashActivity"

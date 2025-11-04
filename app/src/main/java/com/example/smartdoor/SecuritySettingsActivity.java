@@ -1,5 +1,6 @@
 package com.example.smartdoor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,13 +25,8 @@ public class SecuritySettingsActivity extends AppCompatActivity {
 
         // 🔹 Cài đặt vân tay
         btnFingerprint.setOnClickListener(v -> {
-            Toast.makeText(this, "🔒 Đang mở màn hình cài đặt vân tay...", Toast.LENGTH_SHORT).show();
-
-            // Mô phỏng ghi trạng thái lên Firebase
-            FirebaseDatabase.getInstance().getReference("SystemLogs")
-                    .push().setValue("User opened fingerprint setup screen");
-
-            // Ở đây sau này bạn có thể mở activity khác để quét / enroll vân tay thật
+            Intent intent = new Intent(SecuritySettingsActivity.this, FingerprintManagementActivity.class);
+            startActivity(intent);
         });
 
         // 🔹 Cài đặt mật khẩu mở cửa
