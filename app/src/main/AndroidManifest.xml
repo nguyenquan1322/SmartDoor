@@ -21,6 +21,8 @@
 
         <activity android:name=".HistoryActivity" />
 
+        <activity android:name=".PasswordManagementActivity" />
+
         <!-- Màn hình khởi động (logo) -->
         <activity
             android:name=".SplashActivity"

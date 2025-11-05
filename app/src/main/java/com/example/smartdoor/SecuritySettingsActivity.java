@@ -31,10 +31,8 @@ public class SecuritySettingsActivity extends AppCompatActivity {
 
         // 🔹 Cài đặt mật khẩu mở cửa
         btnChangePass.setOnClickListener(v -> {
-            Toast.makeText(this, "🧩 Mở giao diện đổi mật khẩu mở cửa...", Toast.LENGTH_SHORT).show();
-
-            FirebaseDatabase.getInstance().getReference("SystemLogs")
-                    .push().setValue("User opened door password change screen");
+            Intent intent = new Intent(SecuritySettingsActivity.this, PasswordManagementActivity.class);
+            startActivity(intent);
         });
     }
 }
