@@ -155,18 +155,18 @@ public class HistoryActivity extends AppCompatActivity {
 
             switch (it.event) {
                 case "open_door":
-                    title = "🔓 Mở cửa";
-                    iconRes = android.R.drawable.ic_lock_idle_charging;
+                    title = "🔓 Mở cửa thành công";
+                    iconRes = R.drawable.icons_open_door;
                     color = 0xFF2E7D32; // green
                     break;
                 case "fingerprint_fail":
-                    title = "❌ Vân tay sai";
-                    iconRes = android.R.drawable.ic_delete;
+                    title = "Vân tay sai";
+                    iconRes = R.drawable.fingerprint_error;
                     color = 0xFFD32F2F; // red
                     break;
                 case "keypad_fail":
-                    title = "❌ Mật khẩu sai";
-                    iconRes = android.R.drawable.ic_delete;
+                    title = "Nhập sai mật khẩu";
+                    iconRes = R.drawable.password_fail;
                     color = 0xFFD32F2F; // red
                     break;
                 default:
