@@ -1,173 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="#F5F7FA"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Logo -->
+    <!-- Ảnh nền full màn hình -->
     <ImageView
-        android:id="@+id/imgLogo"
-        android:src="@drawable/smartdoor_logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Lời chào -->
-    <TextView
-        android:id="@+id/tvGreeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chào bạn!"
-        android:textColor="#1A73E8"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
-
-    <TextView
-        android:id="@+id/tvDoorStatus"
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="📡 Trạng thái: Đang khởi động..."
-        android:textColor="#2E7D32"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg" /> <!-- ⚠️ đổi tên ảnh ở đây -->
 
-
-    <!-- Lưới các nút chức năng -->
-    <GridLayout
-        android:id="@+id/gridButtons"
+    <!-- Lớp phủ trắng mờ nhẹ giúp chữ dễ đọc hơn -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:columnCount="2"
-        android:rowCount="2"
-        android:useDefaultMargins="true"
-        android:alignmentMode="alignMargins"
-        android:layout_gravity="center">
+        android:layout_height="match_parent"
+        android:background="#80FFFFFF" />
 
-        <!-- Ô 1: Mở khóa -->
-        <LinearLayout
-            android:id="@+id/btnUnlock"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:orientation="vertical"
+    <!-- Toàn bộ giao diện chính -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:src="@drawable/smartdoor_logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Lời chào -->
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chào bạn!"
+            android:textColor="#1A73E8"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Trạng thái cửa -->
+        <TextView
+            android:id="@+id/tvDoorStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📡 Trạng thái: Đang khởi động..."
+            android:textColor="#2E7D32"
+            android:textSize="16sp"
             android:gravity="center"
-            android:layout_margin="8dp"
-            android:padding="16dp"
-            android:backgroundTintMode="src_in"
-            android:background="@drawable/bg_button_blue">
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/twotone_lock_24"
-                app:tint="#FFFFFF" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mở khóa"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
-
-        <!-- Ô 2: Cài đặt -->
-        <LinearLayout
-            android:id="@+id/btnSecurity"
-            android:layout_width="0dp"
+        <!-- Lưới nút chức năng -->
+        <GridLayout
+            android:id="@+id/gridButtons"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="8dp"
-            android:padding="16dp"
-            android:background="@drawable/bg_button_green">
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:useDefaultMargins="true"
+            android:alignmentMode="alignMargins"
+            android:layout_gravity="center">
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@android:drawable/ic_menu_manage"
-                app:tint="#FFFFFF" />
+            <!-- Mở khóa -->
+            <LinearLayout
+                android:id="@+id/btnUnlock"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_button_blue">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cài đặt"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/twotone_lock_24"
+                    app:tint="#FFFFFF" />
 
-        <!-- Ô 3: Lịch sử -->
-        <LinearLayout
-            android:id="@+id/btnHistory"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="8dp"
-            android:padding="16dp"
-            android:background="@drawable/bg_button_yellow">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mở khóa"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@android:drawable/ic_menu_recent_history"
-                app:tint="#FFFFFF" />
+            <!-- Cài đặt -->
+            <LinearLayout
+                android:id="@+id/btnSecurity"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_button_green">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lịch sử"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@android:drawable/ic_menu_manage"
+                    app:tint="#FFFFFF" />
 
-        <!-- Ô 4: Đăng xuất -->
-        <LinearLayout
-            android:id="@+id/btnLogout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="8dp"
-            android:padding="16dp"
-            android:background="@drawable/bg_button_red">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cài đặt"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@android:drawable/ic_lock_power_off"
-                app:tint="#FFFFFF" />
+            <!-- Lịch sử -->
+            <LinearLayout
+                android:id="@+id/btnHistory"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_button_yellow">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Đăng xuất"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@android:drawable/ic_menu_recent_history"
+                    app:tint="#FFFFFF" />
 
-    </GridLayout>
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lịch sử"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Đăng xuất -->
+            <LinearLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_button_red">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng xuất"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+</FrameLayout>
