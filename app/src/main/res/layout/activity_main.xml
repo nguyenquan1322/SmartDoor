@@ -2,21 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Ảnh nền full màn hình -->
-    <ImageView
-        android:id="@+id/imgBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/bg" /> <!-- ⚠️ đổi tên ảnh ở đây -->
-
-    <!-- Lớp phủ trắng mờ nhẹ giúp chữ dễ đọc hơn -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80FFFFFF" />
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_smartdoor">
 
     <!-- Toàn bộ giao diện chính -->
     <LinearLayout
@@ -26,25 +13,51 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/imgLogo"
-            android:src="@drawable/smartdoor_logo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp" />
+        <!-- Logo + tên ứng dụng -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/smartdoor_logo"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="-12dp" />
+
+            <TextView
+                android:id="@+id/tvAppNameMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smart Door System"
+                android:textColor="#1A73E8"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:layout_marginTop="-6dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
 
         <!-- Lời chào -->
         <TextView
             android:id="@+id/tvGreeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chào bạn!"
+            android:text="Xin chào!"
             android:textColor="#1A73E8"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
 
         <!-- Trạng thái cửa -->
         <TextView
@@ -55,8 +68,11 @@
             android:textColor="#2E7D32"
             android:textSize="16sp"
             android:gravity="center"
-            android:padding="10dp"
-            android:layout_marginTop="8dp"/>
+            android:padding="8dp"
+            android:background="@drawable/bg_status_box"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp" />
 
         <!-- Lưới nút chức năng -->
         <GridLayout
@@ -81,7 +97,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                android:background="@drawable/bg_button_blue">
+                android:background="@drawable/bg_button_blue"
+                android:elevation="4dp">
 
                 <ImageView
                     android:layout_width="56dp"
@@ -110,7 +127,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                android:background="@drawable/bg_button_green">
+                android:background="@drawable/bg_button_green"
+                android:elevation="4dp">
 
                 <ImageView
                     android:layout_width="56dp"
@@ -139,7 +157,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                android:background="@drawable/bg_button_yellow">
+                android:background="@drawable/bg_button_yellow"
+                android:elevation="4dp">
 
                 <ImageView
                     android:layout_width="56dp"
@@ -168,7 +187,8 @@
                 android:gravity="center"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                android:background="@drawable/bg_button_red">
+                android:background="@drawable/bg_button_red"
+                android:elevation="4dp">
 
                 <ImageView
                     android:layout_width="56dp"
