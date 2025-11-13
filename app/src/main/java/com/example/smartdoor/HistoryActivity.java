@@ -99,6 +99,36 @@ public class HistoryActivity extends AppCompatActivity {
 
     // 👂 Lắng nghe log từ Firebase
     private void listenLogs() {
+        logsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                allLogs.clear();
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Map<String, Object> map = (Map<String, Object>) child.getValue();
+                    if (map == null) continue;
+
+                    String event = String.valueOf(map.getOrDefault("event", ""));
+                    if (!Arrays.asList("open_door", "fingerprint_fail", "keypad_fail").contains(event))
+                        continue;
+
+                    String message = String.valueOf(map.getOrDefault("message", ""));
+                    String device = String.valueOf(map.getOrDefault("device", "unknown"));
+                    long ts = normalizeTimestamp(map.get("timestamp"));
+
+                    allLogs.add(0, new LogItem(event, message, device, ts));
+                }
+
+                applyFilter();  // lọc đúng theo ngày
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HistoryActivity.this, "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 👂 Nghe log mới thêm vào realtime
         logsRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChildName) {
@@ -117,15 +147,13 @@ public class HistoryActivity extends AppCompatActivity {
                 applyFilter();
             }
 
-            @Override public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(HistoryActivity.this, "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override public void onChildChanged(@NonNull DataSnapshot s, String p) {}
-            @Override public void onChildRemoved(@NonNull DataSnapshot s) {}
-            @Override public void onChildMoved(@NonNull DataSnapshot s, String p) {}
+            public void onChildChanged(@NonNull DataSnapshot s, String p) {}
+            public void onChildRemoved(@NonNull DataSnapshot s) {}
+            public void onChildMoved(@NonNull DataSnapshot s, String p) {}
+            public void onCancelled(@NonNull DatabaseError e) {}
         });
     }
+
 
     // 📅 Chọn ngày
     private void showDatePicker() {
@@ -144,24 +172,31 @@ public class HistoryActivity extends AppCompatActivity {
     // 🔍 Lọc log theo ngày
     private void applyFilter() {
         filteredLogs.clear();
+
         if (selectedDate == null) {
             filteredLogs.addAll(allLogs);
         } else {
             Calendar sel = Calendar.getInstance();
             sel.setTime(selectedDate);
+
             int selYear = sel.get(Calendar.YEAR);
             int selDay = sel.get(Calendar.DAY_OF_YEAR);
+
             for (LogItem item : allLogs) {
                 Calendar logCal = Calendar.getInstance();
                 logCal.setTime(new Date(item.timestamp));
+
                 if (logCal.get(Calendar.YEAR) == selYear &&
-                        logCal.get(Calendar.DAY_OF_YEAR) == selDay)
+                        logCal.get(Calendar.DAY_OF_YEAR) == selDay) {
+
                     filteredLogs.add(item);
+                }
             }
         }
+
         adapter.notifyDataSetChanged();
-        recyclerView.scrollToPosition(0);
     }
+
 
     // ================== UI Helper ==================
     private void styleMiniButton(Button btn, int color) {
@@ -184,11 +219,37 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private long normalizeTimestamp(Object t) {
+        if (t == null) return System.currentTimeMillis();
+        String rawStr = String.valueOf(t).trim();
+
+        // 1) -------- Nếu là số → xử lý epoch --------
         try {
-            long raw = Long.parseLong(String.valueOf(t));
-            return raw < 1e11 ? raw * 1000 : raw;
-        } catch (Exception e) { return System.currentTimeMillis(); }
+            long raw = Long.parseLong(rawStr);
+            // Epoch seconds → convert sang millis
+            if (raw < 1e11) return raw * 1000;
+            return raw;
+        } catch (Exception ignored) {}
+
+        // 2) -------- Nếu là chuỗi datetime → parse theo nhiều format --------
+        String[] formats = {
+                "yyyy-MM-dd HH:mm:ss",
+                "yyyy/MM/dd HH:mm:ss",
+                "dd/MM/yyyy HH:mm:ss",
+                "dd-MM-yyyy HH:mm:ss"
+        };
+
+        for (String f : formats) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat(f, Locale.getDefault());
+                Date d = sdf.parse(rawStr);
+                if (d != null) return d.getTime();
+            } catch (Exception ignore) {}
+        }
+
+        // 3) -------- Nếu không nhận dạng được → trả về now --------
+        return System.currentTimeMillis();
     }
+
 
     // ================== Model ==================
     private static class LogItem {
